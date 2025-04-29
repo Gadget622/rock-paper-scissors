@@ -1,3 +1,13 @@
+# Generates fair rps-style game rules.
+# Even integers will generate incomplete but fair games
+def generate_rules(num_options):   
+    rules = {}
+    for x in [int(x) for x in range(0,num_options)]:
+        rules[str(x)] = []
+        for y in range(x + 1,x + (num_options - 1) // 2 + 1):
+            rules[str(x)] += [str(y % num_options)]
+    return rules
+
 class Game:
     def __init__(self):
         self.model = None
@@ -52,34 +62,6 @@ class Game:
 
     def get_frame(self):
         return self.frame
-
-class GameRules:
-    def __init__(self):
-        self.game = None
-        self.rules = None
-        self.best_of = None
-
-    def set_game(self, game):
-        self.game = game
-    
-    def get_game(self):
-        return self.game
-
-    def set_rules(self):
-        self.rules = {
-            "rock": "scissors",
-            "paper": "rock",
-            "scissors": "paper"
-        }
-
-    def get_rules(self):
-        return self.rules
-    
-    def set_best_of(self, best_of):
-        self.best_of = best_of
-
-    def get_best_of(self):
-        return self.best_of
 
 class GameFrame:
     def __init__(self):
